@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat with Auth</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h2>Real-Time Chat</h2>
+
+    <!-- Authentication Section -->
+    <div id="auth-section">
+        <button id="login-btn">Sign in with Google</button>
+        <button id="logout-btn" style="display: none;">Sign Out</button>
+        <p id="user-info"></p>
+    </div>
+
+    <!-- Chat Section -->
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Type a message..." disabled>
+        <button id="send-btn" disabled>Send</button>
+    </div>
+
+    
+    
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
