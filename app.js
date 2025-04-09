@@ -4,12 +4,12 @@ import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, deleteDoc
 
 // Firebase Configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCLWvLGoPAPh67rhhhKJVCn3fpej0rrxWE",
-    authDomain: "real-time-chat-app-b07c5.firebaseapp.com",
-    projectId: "real-time-chat-app-b07c5",
-    storageBucket: "real-time-chat-app-b07c5.appspot.com",
-    messagingSenderId: "558774636506",
-    appId: "1:558774636506:web:ec7b7ab9b07f298acafae3"
+    apiKey: "YOUR_API_KEY",
+  authDomain: "your-app.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-app.appspot.com",
+  messagingSenderId: "your-sender-id",
+  appId: "your-app-id"
 };
 
 // Initialize Firebase
