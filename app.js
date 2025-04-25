@@ -18,7 +18,7 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-// Select elements
+
 const chatBox = document.getElementById("chat-box");
 const messageInput = document.getElementById("message-input");
 const sendBtn = document.getElementById("send-btn");
@@ -26,17 +26,17 @@ const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const userInfo = document.getElementById("user-info");
 
-// Sign in with Google
+
 loginBtn.addEventListener("click", async () => {
     signInWithPopup(auth, provider).catch(error => console.error("Error signing in:", error));
 });
 
-// Sign out
+
 logoutBtn.addEventListener("click", () => {
     signOut(auth).catch(error => console.error("Error signing out:", error));
 });
 
-// Track user authentication state
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
         userInfo.textContent = `Logged in as: ${user.displayName}`;
@@ -53,7 +53,7 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// Send a message
+
 sendBtn.addEventListener("click", async () => {
     const message = messageInput.value.trim();
     if (message && auth.currentUser) {
@@ -65,34 +65,23 @@ sendBtn.addEventListener("click", async () => {
         messageInput.value = "";
     }
 });
-
-// Delete a message function
 async function deleteMessage(messageId) {
     if (confirm("Are you sure you want to delete this message?")) {
         await deleteDoc(doc(db, "messages", messageId));
     }
 }
-
-// Load messages in real-time
 const q = query(collection(db, "messages"), orderBy("timestamp"));
 onSnapshot(q, (snapshot) => {
-    chatBox.innerHTML = ""; // Clear previous messages to avoid duplication
-
+    chatBox.innerHTML = ""; 
     snapshot.forEach((doc) => {
         const docData = doc.data();
-        const docId = doc.id; // Firestore document ID
+        const docId = doc.id; 
         const formattedTime = docData.timestamp?.toDate().toLocaleString();
         const isCurrentUser = auth.currentUser && docData.user === auth.currentUser.displayName;
-
-        // Create message container
         const messageElement = document.createElement("div");
         messageElement.classList.add("message");
         messageElement.setAttribute("data-id", docId);
-
-        // Assign class based on sender
         messageElement.classList.add(isCurrentUser ? "user" : "other");
-
-        // Message content with delete button (only for the sender)
         messageElement.innerHTML = `
             <strong>${docData.user}</strong>: ${docData.text} 
             <span class="timestamp">${formattedTime}</span>
@@ -101,8 +90,6 @@ onSnapshot(q, (snapshot) => {
 
         chatBox.appendChild(messageElement);
     });
-
-    // Attach delete event listeners
     document.querySelectorAll(".delete-btn").forEach((button) => {
         button.addEventListener("click", function () {
             const messageId = this.getAttribute("data-id");
@@ -110,6 +97,5 @@ onSnapshot(q, (snapshot) => {
         });
     });
 
-    // Auto-scroll to latest message
     chatBox.scrollTop = chatBox.scrollHeight;
 });
