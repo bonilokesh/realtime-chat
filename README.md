@@ -24,6 +24,18 @@ A simple real-time chat application built with **HTML**, **CSS**, **JavaScript**
 
 ---
 
+---
+
+## Download Docker Image
+1. [Click here to download chat-app.tar](https://drive.google.com/file/d/14ECG126RYLMhwofyubKCeiqadVt0QmmQ/view?usp=sharing)
+2. Open terminal and run:
+   docker load -i chat-app.tar
+3. Then start the app:
+   docker run -p 8080:80 chat-app
+4. Open browser and go to: http://localhost:8080
+
+---
+
 ## 🔧 Setup Instructions
 
 1. Clone the repo or download the code.
@@ -46,3 +58,6 @@ const firebaseConfig = {
   messagingSenderId: "your-sender-id",
   appId: "your-app-id"
 };
+
+'''js
+
